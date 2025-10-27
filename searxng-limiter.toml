@@ -1,0 +1,42 @@
+# SearXNG Limiter配置 - 禁用bot检测，允许所有IP访问
+
+[botdetection]
+
+# The prefix defines the number of leading bits in an address that are compared
+# to determine whether or not an address is part of a (client) network.
+ipv4_prefix = 32
+ipv6_prefix = 48
+
+# If the request IP is in trusted_proxies list, the client IP address is
+# extracted from the X-Forwarded-For and X-Real-IP headers.
+# 信任所有代理，允许本地和私有网络
+trusted_proxies = [
+  '127.0.0.0/8',
+  '::1',
+  '192.168.0.0/16',
+  '172.16.0.0/12',
+  '10.0.0.0/8',
+  'fd00::/8',
+]
+
+[botdetection.ip_limit]
+
+# 禁用本地链路过滤，允许所有本地IP
+filter_link_local = false
+
+# 禁用link token方法
+link_token = false
+
+[botdetection.ip_lists]
+
+# 不阻止任何IP
+block_ip = []
+
+# 允许所有IP（放行所有IPv4和IPv6）
+pass_ip = [
+  '0.0.0.0/0',
+  '::/0'
+]
+
+# 关闭SearXNG组织IP白名单（因为我们已经允许所有IP）
+pass_searxng_org = false

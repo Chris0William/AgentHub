@@ -1,0 +1,69 @@
+# SearXNG 配置 - 禁用限流，启用多个搜索引擎
+
+use_default_settings: true
+
+server:
+  secret_key: "change-this-to-a-random-string"
+  limiter: false  # 禁用请求限制
+  image_proxy: false
+
+# 搜索配置
+search:
+  safe_search: 0
+  autocomplete: ""
+  default_lang: "zh"
+  formats:
+    - html
+    - json  # 启用JSON格式API
+
+# 禁用bot检测
+botdetection:
+  ip_limit:
+    filter_link_local: false
+  ip_lists:
+    pass_ip:
+      - 0.0.0.0/0  # 允许所有IP
+      - ::/0
+
+outgoing:
+  request_timeout: 15.0
+  max_request_timeout: 30.0
+
+# UI配置
+ui:
+  static_use_hash: false
+  default_locale: ""
+  query_in_title: false
+
+# 启用多个搜索引擎，分散请求压力
+engines:
+  # 保留默认引擎DuckDuckGo和Brave
+  - name: duckduckgo
+    disabled: false
+
+  - name: brave
+    disabled: false
+
+  # 启用Google（如果可用）
+  - name: google
+    disabled: false
+
+  # 启用Qwant（欧洲隐私搜索引擎）
+  - name: qwant
+    disabled: false
+
+  # 启用Startpage（Google代理）
+  - name: startpage
+    disabled: false
+
+  # 启用Mojeek（独立索引）
+  - name: mojeek
+    disabled: false
+
+  # 启用Yandex（俄罗斯搜索引擎）
+  - name: yandex
+    disabled: false
+
+  # 启用Wikipedia
+  - name: wikipedia
+    disabled: false

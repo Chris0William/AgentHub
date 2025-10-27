@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-gradient-to-br from-pink-50 via-purple-50 to-pink-100 min-h-screen;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+  }
+}
+
+@layer components {
+  .cute-button {
+    @apply bg-gradient-to-r from-pink-400 to-purple-400 text-white font-semibold py-3 px-6 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 ease-in-out;
+  }
+
+  .cute-input {
+    @apply w-full px-4 py-3 rounded-2xl border-2 border-pink-200 focus:border-pink-400 focus:ring-2 focus:ring-pink-200 outline-none transition-all bg-white/80 backdrop-blur-sm;
+  }
+
+  .cute-card {
+    @apply bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl p-6 border-2 border-pink-100 hover:shadow-2xl transition-all duration-300;
+  }
+
+  .message-bubble {
+    @apply rounded-2xl px-4 py-3 shadow-md break-words;
+    /* 响应式最大宽度：移动端95%，平板85%，桌面70% */
+    max-width: 95%;
+    /* 强制换行，处理长单词 */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  @media (min-width: 640px) {
+    .message-bubble {
+      max-width: 85%;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .message-bubble {
+      max-width: 75%;
+    }
+  }
+
+  .user-message {
+    @apply message-bubble bg-gradient-to-r from-pink-400 to-purple-400 text-white ml-auto;
+  }
+
+  .ai-message {
+    @apply message-bubble bg-white border-2 border-pink-100 text-gray-800;
+    /* AI消息额外样式优化 */
+    @apply leading-relaxed;
+  }
+}

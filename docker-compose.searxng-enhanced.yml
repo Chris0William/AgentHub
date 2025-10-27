@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  searxng:
+    image: searxng/searxng:latest
+    container_name: searxng-enhanced
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./searxng-settings.yml:/etc/searxng/settings.yml:ro
+      - ./searxng-limiter.toml:/etc/searxng/limiter.toml:ro
+    environment:
+      - SEARXNG_SECRET=change-this-to-a-random-string
+      - BASE_URL=http://localhost:8080/
+    restart: unless-stopped
+
+# 配置说明：
+# 1. 创建 searxng-settings.yml 文件
+# 2. 启用国内搜索引擎（百度、搜狗、必应中文）
+# 3. 禁用或降低国外引擎权重
+# 4. 设置请求延迟防止封禁
